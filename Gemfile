@@ -13,6 +13,7 @@ gem 'rails', '~> 6.0.3'
 gem 'sass-rails', '~> 5'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
+gem 'activeadmin', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
