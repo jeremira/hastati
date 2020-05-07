@@ -14,7 +14,7 @@ AllCops:
     - Guardfile
     - node_modules/**/*
     - bin/**/*
-    - db/schema.rb
+    - db/**/*
 
 Layout/LineLength:
   Enabled: true
