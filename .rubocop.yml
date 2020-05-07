@@ -1,0 +1,155 @@
+#
+# Rules specified here take precedence over default Rubocop config
+# Check the guide : https://github.com/rubocop-hq/ruby-style-guide
+#
+
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.7
+  Exclude:
+    - Guardfile
+    - node_modules/**/*
+    - bin/**/*
+
+Layout/LineLength:
+  Enabled: true
+  AutoCorrect: true
+  Max: 160
+
+Layout/BlockAlignment:
+  Description: 'Align block ends correctly.'
+  Enabled: true
+  EnforcedStyleAlignWith: start_of_block
+
+Layout/CaseIndentation:
+  Description: 'Indentation of when in a case/when/[else/]end.'
+  Enabled: true
+  EnforcedStyle: end
+
+Layout/ClassStructure:
+  Description: 'Enforces a configured order of definitions within a class body.'
+  Enabled: true
+  Categories:
+    module_inclusion:
+      - include
+      - prepend
+      - extend
+    attribute_macros:
+      - store_accessor
+      - attr_accessor
+      - attr_reader
+      - attr_writer
+    association:
+      - belongs_to
+      - has_one
+      - has_and_belongs_to_many
+      - has_many
+    macros:
+      - validates
+      - validate
+  ExpectedOrder:
+      - module_inclusion
+      - constants
+      - public_attribute_macros
+      - association
+      - public_delegate
+      - macros
+      - public_class_methods
+      - initializer
+      - public_methods
+      - protected_attribute_macros
+      - protected_methods
+      - private_attribute_macros
+      - private_delegate
+      - private_methods
+
+Layout/FirstArrayElementLineBreak:
+  Description: >-
+                 Checks for a line break before the first element in a
+                 multi-line array.
+  Enabled: true
+
+Layout/FirstHashElementLineBreak:
+  Description: >-
+                 Checks for a line break before the first element in a
+                 multi-line hash.
+  Enabled: true
+
+Layout/FirstMethodArgumentLineBreak:
+  Description: >-
+                 Checks for a line break before the first argument in a
+                 multi-line method call.
+  Enabled: true
+
+Layout/FirstMethodParameterLineBreak:
+  Description: >-
+                 Checks for a line break before the first parameter in a
+                 multi-line method parameter definition.
+  Enabled: true
+
+Naming/BlockParameterName:
+  Description: >-
+                Checks for block parameter names that contain capital letters,
+                end in numbers, or do not meet a minimal length.
+  Enabled: true
+  VersionAdded: '0.53'
+  # Parameter names may be equal to or greater than this value
+  MinNameLength: 3
+  # # Whitelisted names that will not register an offense
+  AllowedNames:
+    - id
+    - io
+  # Blacklisted names that will register an offense
+  ForbiddenNames: []
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+
+Style/SymbolArray:
+  Description: 'Use arrays of symbols.'
+  EnforcedStyle: brackets
+  Enabled: true
+
+Style/WordArray:
+  Description: 'Use arrays of words.'
+  StyleGuide: '#percent-w'
+  Enabled: true
+  EnforcedStyle: brackets
+
+Style/HashEachMethods:
+  Description: 'Enforce #each_key and #each_value on hash'
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Rails:
+  Description: 'Rails specific cops are always run'
+  Enabled: true
+
+RSpec/MessageExpectation:
+  Description: Checks for consistent message expectation style.
+  Enabled: true
+  EnforcedStyle: allow
+
+RSpec/MultipleExpectations:
+  Enabled: true
+  Exclude:
+    - 'spec/acceptance/**/*'
+
+RSpec/ExampleLength:
+  Enabled: true
+  Max: 8
+  Exclude:
+    - 'spec/acceptance/**/*'
+
+RSpec/EmptyLineAfterExample:
+  Enabled: false
