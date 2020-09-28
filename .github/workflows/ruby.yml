@@ -55,12 +55,20 @@ jobs:
     services:
       postgres:
         image: postgres:11
+        env:
+          POSTGRES_PASSWORD: postgress
+          POSTGRES_USERNAME: postgres
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        ports:
+          - 5432:5432
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
+      - name: Instal librairies
+        run: sudo apt-get install libpq-dev
       - name: Ruby gem cache
         uses: actions/cache@v1
         with:
@@ -92,6 +100,8 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
+          POSTGRES_USERNAME: postgres
+          POSTGRES_PASSWORD: postgres
         run: |
           bundle exec rails db:create
           bundle exec rails db:migrate
