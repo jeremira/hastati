@@ -55,11 +55,6 @@ jobs:
     services:
       postgres:
         image: postgres:11
-        env:
-          POSTGRES_USER: hastati
-          POSTGRES_DB: hastati_test
-          POSTGRES_PASSWORD: ""
-        ports: ["5432:5432"]
 
     steps:
       - name: Checkout code
@@ -97,18 +92,10 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
-          PGHOST: localhost
-          POSTGRES_USER: hastati
-          POSTGRES_DB: hastati_test
-          POSTGRES_PASSWORD: ""
         run: |
-          bundle exec rails db:setup
+          bundle exec rails db:create
+          bundle exec rails db:migrate
       - name: Run tests
         env:
           RAILS_ENV: test
-          PGHOST: localhost
-          POSTGRES_USER: hastati
-          POSTGRES_DB: hastati_test
-          POSTGRES_PASSWORD: ""
-          PGPORT: ${{ job.services.postgres.ports[5432] }}
         run: bundle exec rspec
