@@ -10,14 +10,12 @@ development:
 test:
   <<: *default
   database: hastati_test
-  <% if ENV['POSTGRES_USERNAME'] %>
-  username: ENV['POSTGRES_USERNAME']
+  <% if ENV['GIHUB_ACTION_CI'] %>
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
   <% end %>
-  <% if ENV['POSTGRES_PASSWORD'] %>
-  username: ENV['POSTGRES_PASSWORD']
-  <% end %>
-  # host: localhost
-  # port: 5432
 
 production:
   <<: *default
