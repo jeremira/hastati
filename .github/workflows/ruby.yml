@@ -29,6 +29,8 @@ jobs:
         ruby-version: 2.7.0
     - name: Install dependencies
       run: bundle install
+    - name: Create database
+      run: bundle exec rake db:setup
     - name: Run linters
       run: bundle exec rubocop
     - name: Run tests
