@@ -7,7 +7,7 @@ development:
   <<: *default
   database: hastati_development
 
-<%= if ENV['GIHUB_ACTION_CI'] %>
+<% if ENV['GIHUB_ACTION_CI'] %>
 test:
   <<: *default
   database: hastati_test
