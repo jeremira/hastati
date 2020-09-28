@@ -2,6 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['POSTGRES_USERNAME'] || 'kwuteg' %>
+  password: <%= ENV['POSTGRES_PASSWORD'] || '' %>
 
 development:
   <<: *default
@@ -63,5 +65,3 @@ test:
 production:
   <<: *default
   database: hastati_production
-  username: hastati
-  password: <%= ENV['HASTATI_DATABASE_PASSWORD'] %>
