@@ -47,7 +47,7 @@ jobs:
 
       - name: Run linters
         run: |
-          bin/rubocop
+          bundle exec rubocop
 
   tests:
     name: Tests
@@ -102,7 +102,7 @@ jobs:
           POSTGRES_DB: hastati_test
           POSTGRES_PASSWORD: ""
         run: |
-          bin/rails db:setup
+          bundle exec rails db:setup
       - name: Run tests
         env:
           RAILS_ENV: test
@@ -111,4 +111,4 @@ jobs:
           POSTGRES_DB: hastati_test
           POSTGRES_PASSWORD: ""
           PGPORT: ${{ job.services.postgres.ports[5432] }}
-        run: bin/rspec
+        run: bundle exec rspec
