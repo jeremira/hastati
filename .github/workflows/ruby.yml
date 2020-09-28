@@ -4,7 +4,6 @@
 # documentation.
 # This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
 # For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
-
 name: Ruby
 
 on:
@@ -14,34 +13,62 @@ on:
     branches: [ master ]
 
 jobs:
-  test:
-
+  tests:
     runs-on: ubuntu-latest
 
     services:
       postgres:
-        image: postgres:11.6-alpine
+        image: postgres:11
         env:
           POSTGRES_USERNAME: hastati
+          POSTGRES_DB: hastati_test
           POSTGRES_PASSWORD: password
         ports:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        # options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
     - uses: actions/checkout@v2
     - name: Set up Ruby
-    # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
-    # change this to (see https://github.com/ruby/setup-ruby#versioning):
-    # uses: ruby/setup-ruby@v1
-      uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
+      uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.7.0
-    - name: Install dependencies
-      run: bundle install
-    - name: Create database
-      run: bundle exec rake db:setup
+    - name: Ruby gem cache
+      uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+    - name: Install gems
+      run: |
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.13.0
+    - name: Find yarn cache location
+      id: yarn-cache
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: JS package cache
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.yarn-cache.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: Install packages
+      run: |
+        yarn install --pure-lockfile
+    - name: Setup test database
+      env:
+        RAILS_ENV: test
+        PGHOST: localhost
+        PGUSER: hastati
+      run: |
+        bundle exec rake db:setup
     - name: Run linters
       run: bundle exec rubocop
     - name: Run tests
