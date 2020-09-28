@@ -134,6 +134,10 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: true
 
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
 Rails:
   Description: 'Rails specific cops are always run'
   Enabled: true
@@ -146,13 +150,13 @@ RSpec/MessageExpectation:
 RSpec/MultipleExpectations:
   Enabled: true
   Exclude:
-    - 'spec/acceptance/**/*'
+    - 'spec/system/**/*'
 
 RSpec/ExampleLength:
   Enabled: true
   Max: 8
   Exclude:
-    - 'spec/acceptance/**/*'
+    - 'spec/system/**/*'
 
 RSpec/EmptyLineAfterExample:
   Enabled: false

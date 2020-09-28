@@ -27,12 +27,14 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'capybara'
   gem 'factory_bot_rails', '~> 5.2'
   gem 'rspec-rails', '~> 4.0.0'
   gem 'rubocop', '~> 0.86', require: false
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'webdrivers', '~> 4.0'
 end
 
 group :development do
