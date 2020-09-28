@@ -10,10 +10,6 @@ development:
 test:
   <<: *default
   database: hastati_test
-  username: kwuteg
-  password: password
-  host: localhost
-  port: 5432
 
 production:
   <<: *default

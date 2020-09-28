@@ -12,8 +12,8 @@ jobs:
       postgres:
         image: postgres:11
         env:
-          POSTGRES_PASSWORD: password
-          POSTGRES_USERNAME: kwuteg
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USERNAME: postgres
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
         ports:
           - 5432:5432
@@ -55,9 +55,10 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
-          POSTGRES_USERNAME: kwuteg
-          POSTGRES_PASSWORD: password
+          POSTGRES_USERNAME: postgres
+          POSTGRES_PASSWORD: postgres
         run: |
+          copy config/database.ci.yml config/database.yml
           bundle exec rails db:create
           bundle exec rails db:migrate
       - name: Run tests
