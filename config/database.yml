@@ -10,9 +10,9 @@ development:
 test:
   <<: *default
   database: hastati_test
-  username: <%= ENV['POSTGRES_USERNAME'] || 'kwuteg' %>
-  password: <%= ENV['POSTGRES_PASSWORD'] || '' %>
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  database: hastati_production
+  username: hastati
+  password: <%= ENV['HASTATI_DATABASE_PASSWORD'] %>
