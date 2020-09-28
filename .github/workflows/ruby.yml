@@ -20,8 +20,7 @@ jobs:
       postgres:
         image: postgres:11
         env:
-          POSTGRES_USERNAME: hastati
-          POSTGRES_DB: hastati_test
+          POSTGRES_USERNAME: postgres
           POSTGRES_PASSWORD: password
         ports:
           - 5432:5432
@@ -65,8 +64,8 @@ jobs:
     - name: Setup test database
       env:
         RAILS_ENV: test
-        PGHOST: localhost
-        PGUSER: hastati
+        POSTGRES_USERNAME: postgres
+        POSTGRES_PASSWORD: password
       run: |
         bundle exec rake db:setup
     - name: Run linters
