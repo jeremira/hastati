@@ -13,6 +13,8 @@ development:
 
 test:
   <<: *default
+  host: localhost
+  port: 5432
   database: <%= ENV["POSTGRES_DB"] %>
   password: <%= ENV.fetch("POSTGRES_PASSWORD") %>
   username: <%= ENV['POSTGRES_USER'] %>
