@@ -65,5 +65,3 @@ jobs:
         env:
           RAILS_ENV: test
         run: bundle exec rspec
-      - name: Run linter
-        run: bundle exec rubocop

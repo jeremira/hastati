@@ -7,6 +7,7 @@ development:
   <<: *default
   database: hastati_development
 
+<%= if ENV['GIHUB_ACTION_CI'] %>
 test:
   <<: *default
   database: hastati_test
@@ -14,6 +15,11 @@ test:
   password: postgres
   host: localhost
   port: 5432
+<% else %>
+test:
+  <<: *default
+  database: hastati_test
+<% end %>
 
 production:
   <<: *default
