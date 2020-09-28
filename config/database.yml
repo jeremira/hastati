@@ -7,9 +7,14 @@ development:
   <<: *default
   database: hastati_development
 
+# test:
+#   <<: *default
+#   database: hastati_test
+
 test:
-  <<: *default
-  database: hastati_test
+  database: <%= ENV["POSTGRES_DB"] %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") %>
+  username: <%= ENV['POSTGRES_USER'] %>
 
 production:
   <<: *default
