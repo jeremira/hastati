@@ -10,10 +10,14 @@ development:
 test:
   <<: *default
   database: hastati_test
-  username: postgres
-  password: postgres
-  host: localhost
-  port: 5432
+  <% if ENV['POSTGRES_USERNAME'] %>
+  username: ENV['POSTGRES_USERNAME']
+  <% end %>
+  <% if ENV['POSTGRES_PASSWORD'] %>
+  username: ENV['POSTGRES_PASSWORD']
+  <% end %>
+  # host: localhost
+  # port: 5432
 
 production:
   <<: *default
