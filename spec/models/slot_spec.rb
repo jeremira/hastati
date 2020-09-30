@@ -31,6 +31,7 @@ RSpec.describe Slot, type: :model do
 
   describe 'Status enum' do
     let(:slot) { create :slot }
+
     it 'default to available status' do
       expect(slot.available?).to eq true
     end
@@ -43,8 +44,10 @@ RSpec.describe Slot, type: :model do
       expect(slot.payed?).to eq true
     end
   end
+
   describe 'Daytime enum' do
     let(:slot) { create :slot }
+
     it 'default to lunch daytime' do
       expect(slot.lunch?).to eq true
     end

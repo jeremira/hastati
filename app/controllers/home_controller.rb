@@ -3,5 +3,7 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!
 
-  def index; end
+  def index
+    redirect_to slots_path if current_user # is an host
+  end
 end

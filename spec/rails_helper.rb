@@ -23,6 +23,8 @@ end
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |filename| require filename }
 
 RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :system
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
