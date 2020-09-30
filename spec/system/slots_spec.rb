@@ -9,13 +9,13 @@ RSpec.describe 'Slots', type: :system do
     sign_in user
     visit '/'
     expect(page).to have_content "Slots for #{user.email} : 0"
-    select '2020-05-05', from: :slot_scheduled_at
+    fill_in :slot_scheduled_at, with: '05/05/2020'
     select 'lunch', from: :slot_daytime
     select 2, from: :slot_max_people
-    click_button 'Create new slot'
-    expect(page).to have_content 'New slot created'
+    click_button 'Create slot'
+    expect(page).to have_content 'Slot created'
     expect(page).to have_content "Slots for #{user.email} : 1"
-    expect(page).to have_content 'Available slot - 2020/05/05 - Lunch - 2 ppl max'
+    expect(page).to have_content 'Available - 05/05/2020 - Lunch - 2 ppl max'
   end
 
   it 'A host consults all his slots' do

@@ -1,5 +1,17 @@
 <h1>Slots for <%= current_user.email %> : <%= @slots.count %></h1>
-todo add bullet
+<hr>
+
+<%= form_with model: Slot.new, local: true do |form| %>
+  <%= form.label :date_field, 'Slot date :' %>
+  <%= form.date_field :scheduled_at %>
+  <%= form.label :daytime, 'Slot period :' %>
+  <%= form.select :daytime, Slot.daytimes.keys.to_a %>
+  <%= form.label :max_people, 'Max number of people :' %>
+  <%= form.select :max_people, (1..10).map { |int| [int, int]} %>
+  <%= form.submit 'Create slot' %>
+<% end %>
+<hr>
+
 <ul>
   <%= render @slots %>
 </ul>

@@ -42,7 +42,7 @@ RSpec.describe 'Authentification' do
       fill_in :user_password, with: 'Abcd1234'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully.'
-      expect(page).to have_content 'Hastati root page'
+      expect(page).to have_content user.email
     end
   end
 end
