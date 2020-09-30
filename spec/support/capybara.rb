@@ -3,7 +3,7 @@
 RSpec.configure do |config|
   config.before type: :system do
     driven_by(:rack_test)
-    # driven_by(:selenium_chrome)
+    #driven_by(:selenium_chrome)
   end
   config.before type: :system, js: true do
     driven_by(:selenium_chrome_headless)
