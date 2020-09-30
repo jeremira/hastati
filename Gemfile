@@ -30,7 +30,7 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_bot_rails', '~> 5.2'
   gem 'rspec-rails', '~> 4.0.0'
-  gem 'rubocop', '~> 0.86', require: false
+  gem 'rubocop', '~> 0.92', require: false
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
