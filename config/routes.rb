@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   # Devise Authentification routing
   devise_for :users
 
-  resources :slots, only: [:index, :create]
+  namespace :host do
+    resources :slots, only: [:index, :create]
+  end
 end

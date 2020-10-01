@@ -3,34 +3,29 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
-
-gem 'activeadmin', '~> 2.7'
-gem 'devise', '~> 4.2'
-gem 'jbuilder', '~> 2.7'
+# Core
+ruby '2.7.1'
+gem 'activeadmin', '~> 2.8'
+gem 'devise', '~> 4.7'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 6.0.3'
-gem 'sass-rails', '~> 5'
-gem 'turbolinks', '~> 5'
-gem 'webpacker', '~> 4.0'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+# Front
+gem 'sass-rails', '~> 6.0'
+gem 'turbolinks', '~> 5.2'
+gem 'webpacker', '~> 5.2'
 
-# Reduces boot times through caching; required in config/boot.rb
+# Misc
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'jbuilder', '~> 2.10'
 
 group :development, :test do
   gem 'bullet'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara'
   gem 'factory_bot_rails', '~> 5.2'
-  gem 'rspec-rails', '~> 4.0.0'
+  gem 'rspec-rails', '~> 4.0'
   gem 'rubocop', '~> 0.92', require: false
   gem 'rubocop-performance'
   gem 'rubocop-rails'
