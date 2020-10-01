@@ -34,9 +34,9 @@ RSpec.describe 'Slots', type: :system do
   end
 
   it 'A guest can not access slots page' do
-    sign_in host
-    visit '/slots'
-    expect(page).to have_content "You can not access this page."
-    expect(page).to have_content "Guest root page"
+    sign_in guest
+    visit '/host/slots'
+    expect(page).to have_content 'You can not access this page.'
+    expect(page).to have_content 'Guest root page'
   end
 end

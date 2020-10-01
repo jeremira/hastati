@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Host
   class SlotsController < HostController
     def index
@@ -8,9 +9,9 @@ module Host
     def create
       slot = current_user.slots.build slot_params
       if slot.save
-        redirect_to slots_path, notice: 'Slot created'
+        redirect_to host_slots_path, notice: 'Slot created'
       else
-        redirect_to slots_path, alert: 'Slot not created'
+        redirect_to host_slots_path, alert: 'Slot not created'
       end
     end
 

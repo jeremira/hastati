@@ -1,7 +1,7 @@
 <h1>Slots for <%= current_user.email %> : <%= @slots.count %></h1>
 <hr>
 
-<%= form_with model: Slot.new, local: true do |form| %>
+<%= form_with model: [:host, Slot.new], local: true do |form| %>
   <%= form.label :date_field, 'Slot date :' %>
   <%= form.date_field :scheduled_at %>
   <%= form.label :daytime, 'Slot period :' %>
