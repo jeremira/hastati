@@ -7,5 +7,5 @@ class User < ApplicationRecord
 
   has_many :slots, dependent: :destroy
 
-  
+  enum identity: { guest: 0, host: 1 }
 end

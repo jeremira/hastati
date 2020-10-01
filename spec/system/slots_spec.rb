@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Slots', type: :system do
-  let(:user) { create :user }
+  let(:user) { create :host_user }
 
   it 'A Host create his first slot' do
     sign_in user
