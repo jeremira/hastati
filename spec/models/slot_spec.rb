@@ -4,9 +4,9 @@ require 'rails_helper'
 
 RSpec.describe Slot, type: :model do
   let(:frozen_time) { Time.zone.parse('2020/05/05') }
-  let(:host1) { create :host_user }
+  let(:host) { create :host_user }
   let(:host2) { create :host_user }
-  let(:slot) { build :slot }
+  let(:slot) { build :slot, user: host }
 
   describe 'Validation' do
     it 'has a valid factory' do
@@ -83,7 +83,7 @@ RSpec.describe Slot, type: :model do
     end
 
     it 'returns an activerecord relation' do
-      expect(tested_method).to be_an ActiveRecord::RelationShip
+      expect(tested_method).to be_an ActiveRecord::Relation
     end
     it 'returns 3 elements' do
       expect(tested_method.count).to eq 3
