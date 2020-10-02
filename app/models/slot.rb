@@ -10,4 +10,6 @@ class Slot < ApplicationRecord
 
   enum status: { available: 0, booked: 1, payed: 2 }
   enum daytime: { lunch: 0, dinner: 1 }
+
+  scope :bookable, -> { available.where('scheduled_at > ?', Time.zone.now) }
 end

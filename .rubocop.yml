@@ -161,3 +161,6 @@ RSpec/ExampleLength:
 
 RSpec/EmptyLineAfterExample:
   Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10

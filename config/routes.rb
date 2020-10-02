@@ -1,16 +1,19 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: 'home#index'
+  root to: 'events#index'
 
   # Active admin routing
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-
   # Devise Authentification routing
   devise_for :users
 
+  resources :events, only: [:index]
+
   namespace :host do
     resources :slots, only: [:index, :create]
+  end
+  namespace :guest do
   end
 end

@@ -1,0 +1,6 @@
+<h1>Available events : <%= @events.count %></h1>
+<hr>
+
+<ul>
+  <%= render partial: 'event', collection: @events %>
+</ul>
