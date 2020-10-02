@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   namespace :host do
     resources :slots, only: [:index, :create]
   end
+  namespace :guest do
+    resources :events, only: [:index]
+  end
 end
