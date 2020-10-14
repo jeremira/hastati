@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(version: 2020_10_14_082919) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.integer "people"
+    t.bigint "slot_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["slot_id"], name: "index_bookings_on_slot_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
   create_table "guests", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -61,8 +71,6 @@ ActiveRecord::Schema.define(version: 2020_10_14_082919) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "guest_id"
-    t.index ["guest_id"], name: "index_slots_on_guest_id"
     t.index ["user_id"], name: "index_slots_on_user_id"
   end
 
@@ -79,5 +87,4 @@ ActiveRecord::Schema.define(version: 2020_10_14_082919) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "slots", "guests"
 end

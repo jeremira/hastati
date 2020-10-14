@@ -2,7 +2,8 @@
 
 class Slot < ApplicationRecord
   belongs_to :user
-  belongs_to :guest, class_name: 'User', optional: true
+  has_many :bookings
+  has_many :guests, through: :bookings, source: :user
 
   validates :status, presence: true
   validates :scheduled_at, presence: true
