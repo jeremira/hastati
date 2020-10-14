@@ -2,6 +2,7 @@
 
 class Slot < ApplicationRecord
   belongs_to :user
+  belongs_to :guest, class_name: 'User', optional: true
 
   validates :status, presence: true
   validates :scheduled_at, presence: true

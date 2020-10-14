@@ -30,6 +30,9 @@ RSpec.describe Slot, type: :model do
     it 'requires a max people greater than 0' do
       expect(build(:slot, max_people: 0)).not_to be_valid
     end
+    it 'do not requires a guest' do
+      expect(build(:slot, guest: nil)).to be_valid
+    end
   end
 
   describe 'Status enum' do
