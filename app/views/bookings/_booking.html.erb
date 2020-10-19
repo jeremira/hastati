@@ -1,0 +1,3 @@
+<li>
+  <%= "#{booking.slot.status.capitalize} - #{booking.slot.user.email} - #{booking.slot.scheduled_at&.strftime("%d/%m/%Y")} - #{booking.slot.daytime&.capitalize} - #{booking.people} ppl" %>
+</li>

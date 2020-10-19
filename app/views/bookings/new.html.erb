@@ -1,0 +1,10 @@
+<h1> 'Do you want to book this event ?' </h1>
+
+<%= "#{@booking.slot.status.capitalize} - #{@booking.slot.user.email} - #{@booking.slot.scheduled_at&.strftime("%d/%m/%Y")} - #{@booking.slot.daytime&.capitalize} - #{@booking.slot.max_people} ppl max" %>
+
+<%= form_with model: @booking, local: true do |form| %>
+  <%= form.hidden_field :slot_id, value: @booking.slot_id %>
+  <%= form.label :people, 'People count :' %>
+  <%= form.select :people, (1..@booking.slot.max_people).map { |int| [int, int]} %>
+  <%= form.submit 'Confirm booking' %>
+<% end %>

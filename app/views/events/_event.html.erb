@@ -1,3 +1,4 @@
 <li>
   <%= "#{event.status.capitalize} - #{event.user.email} - #{event.scheduled_at&.strftime("%d/%m/%Y")} - #{event.daytime&.capitalize} - #{event.max_people} ppl max" %>
+  <%= link_to 'Book event', new_booking_path(booking: {slot_id: event.id}) %>
 </li>
