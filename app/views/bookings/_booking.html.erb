@@ -1,3 +1,9 @@
-<li>
-  <%= "#{booking.slot.status.capitalize} - #{booking.slot.user.email} - #{booking.slot.scheduled_at&.strftime("%d/%m/%Y")} - #{booking.slot.daytime&.capitalize} - #{booking.people} ppl" %>
-</li>
+<div class='col-xl-4 col-12'>
+  <div class='card'>
+    <div class='card-body'>
+      <h5 class='card-title'>@Maisons-Laffite for <%= booking.people %> people</h5>
+      <h5 class='card-title'><%= booking.slot.scheduled_at&.strftime("%d/%m/%Y") %> for <%= booking.slot.daytime %></h5>
+      <h6 class='card-subtitle'>Hosted by : Babar bouba</h6>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,9 @@
-<h1>Available events : <%= @events.count %></h1>
-<hr>
+<div class='row'>
+  <div class='col-xl-12'>
+    <h4>Available events : <%= @events.count %></h4>
+  </div>
+</div>
 
-<ul>
+<div class='row'>
   <%= render partial: 'event', collection: @events %>
-</ul>
+</div>

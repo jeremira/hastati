@@ -1,6 +1,9 @@
-<h1>My bookings :</h1>
-<hr>
+<div class='row'>
+  <div class='col-xl-12'>
+    <h4>My bookings : </h4>
+  </div>
+</div>
 
-<ul>
-  <%= render partial: 'booking', collection: @bookings %>
-</ul>
+<div class='row'>
+  <%= render @bookings %>
+</div>
