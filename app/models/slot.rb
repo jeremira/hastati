@@ -2,6 +2,8 @@
 
 class Slot < ApplicationRecord
   belongs_to :user
+  has_many :bookings, dependent: :destroy
+  has_many :guests, through: :bookings, source: :user
 
   validates :status, presence: true
   validates :scheduled_at, presence: true
@@ -11,5 +13,9 @@ class Slot < ApplicationRecord
   enum status: { available: 0, booked: 1, payed: 2 }
   enum daytime: { lunch: 0, dinner: 1 }
 
-  scope :bookable, -> { available.where('scheduled_at > ?', Time.zone.now) }
+  scope :bookable_for, ->(user) { available.where.not(user: user).where('scheduled_at > ?', Time.zone.now) }
+
+  def bookable_for?(user)
+    Slot.bookable_for(user).exists? id
+  end
 end

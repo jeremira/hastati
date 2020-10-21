@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :events, only: [:index]
+  resources :bookings, only: [:index, :new, :create]
 
   namespace :host do
     resources :slots, only: [:index, :create]
