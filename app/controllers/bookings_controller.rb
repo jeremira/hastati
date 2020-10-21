@@ -13,7 +13,7 @@ class BookingsController < ApplicationController
 
   def create
     @booking = current_user.bookings.build booking_params
-    if @booking.slot.available? && @booking.save
+    if @booking.slot.bookable_for?(current_user) && @booking.save
       @booking.slot.booked!
       redirect_to bookings_path, notice: 'Event has been booked.'
     else
