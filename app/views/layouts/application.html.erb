@@ -29,7 +29,7 @@
               <%= link_to 'Bookings', bookings_path, class: 'nav-link' %>
             </li>
 
-            <% if current_user.host? %>
+            <% if current_user&.host? %>
               <li class="nav-item">
                 <%= link_to 'Slots', host_slots_path, class: 'nav-link' %>
               </li>
