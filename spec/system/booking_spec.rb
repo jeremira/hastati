@@ -25,8 +25,8 @@ RSpec.describe 'Bookings', type: :system do
     end.to change(Booking, :count).from(0).to 1
     expect(page).to have_content 'Event has been booked.'
     expect(page).to have_content '@Maisons-Laffite for 2 people'
-    expect(page).to have_content "06/05/2020 for lunch"
-    expect(page).to have_content "Hosted by : Babar bouba"
+    expect(page).to have_content '06/05/2020 for lunch'
+    expect(page).to have_content 'Hosted by : Babar bouba'
     visit '/events'
     expect(page).to have_content 'Available events : 0'
   end
@@ -54,7 +54,7 @@ RSpec.describe 'Bookings', type: :system do
     sign_in host
     visit '/events'
     expect(page).to have_content 'Available events : 1'
-    expect(page).not_to have_content "07/05/2020 for lunch"
+    expect(page).not_to have_content '07/05/2020 for lunch'
     click_link 'Book event'
     expect(page).to have_content 'lunch 06/05/2020'
     expect(page).to have_content "Hosted by #{other_host.email}, up to 2 people."
@@ -64,8 +64,8 @@ RSpec.describe 'Bookings', type: :system do
     end.to change(Booking, :count).from(0).to 1
     expect(page).to have_content 'Event has been booked.'
     expect(page).to have_content '@Maisons-Laffite for 2 people'
-    expect(page).to have_content "06/05/2020 for lunch"
-    expect(page).to have_content "Hosted by : Babar bouba"
+    expect(page).to have_content '06/05/2020 for lunch'
+    expect(page).to have_content 'Hosted by : Babar bouba'
     visit '/events'
     expect(page).to have_content 'Available events : 0'
   end

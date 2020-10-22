@@ -24,9 +24,9 @@ RSpec.describe 'Events', type: :system do
   end
   it 'A guest see available events' do
     # Available futur events
-    create :slot, user: host, status: 0, scheduled_at: '2020/05/06'
-    create :slot, user: host, status: 0, scheduled_at: '2020/06/02'
-    create :slot, user: host2, status: 0, scheduled_at: '2020/05/09'
+    slot1 = create :slot, user: host, status: 0, scheduled_at: '2020/05/06'
+    slot2 = create :slot, user: host, status: 0, scheduled_at: '2020/06/02'
+    slot3 = create :slot, user: host2, status: 0, scheduled_at: '2020/05/09'
     # Available past events
     create :slot, user: host, status: 0, scheduled_at: '2020/04/05'
     create :slot, user: host2, status: 0, scheduled_at: '2020/05/04'
@@ -38,17 +38,27 @@ RSpec.describe 'Events', type: :system do
     sign_in guest
     visit '/events'
     expect(page).to have_content 'Available events : 3'
-    expect(page).to have_content "Available - #{host.email} - 06/05/2020 - Lunch - 2 ppl max"
-    expect(page).to have_content "Available - #{host.email} - 02/06/2020 - Lunch - 2 ppl max"
-    expect(page).to have_content "Available - #{host2.email} - 09/05/2020 - Lunch - 2 ppl max"
-    expect(page).not_to have_content 'Booked'
-    expect(page).not_to have_content 'Payed'
+    within "#event-card-#{slot1.id}" do
+      expect(page).to have_content '@Maisons-Laffite up to 2 people'
+      expect(page).to have_content '06/05/2020 for lunch'
+      expect(page).to have_content "Hosted by : #{host.email}"
+    end
+    within "#event-card-#{slot2.id}" do
+      expect(page).to have_content '@Maisons-Laffite up to 2 people'
+      expect(page).to have_content '02/06/2020 for lunch'
+      expect(page).to have_content "Hosted by : #{host.email}"
+    end
+    within "#event-card-#{slot3.id}" do
+      expect(page).to have_content '@Maisons-Laffite up to 2 people'
+      expect(page).to have_content '09/05/2020 for lunch'
+      expect(page).to have_content "Hosted by : #{host2.email}"
+    end
   end
   it 'A host see available events' do
     # Available futur events
     create :slot, user: host, status: 0, scheduled_at: '2020/05/06'
     create :slot, user: host, status: 0, scheduled_at: '2020/06/02'
-    create :slot, user: host2, status: 0, scheduled_at: '2020/05/09'
+    slot1 = create :slot, user: host2, status: 0, scheduled_at: '2020/05/09'
     # Available past events
     create :slot, user: host, status: 0, scheduled_at: '2020/04/05'
     create :slot, user: host2, status: 0, scheduled_at: '2020/05/04'
@@ -60,8 +70,10 @@ RSpec.describe 'Events', type: :system do
     sign_in host
     visit '/events'
     expect(page).to have_content 'Available events : 1'
-    expect(page).to have_content "Available - #{host2.email} - 09/05/2020 - Lunch - 2 ppl max"
-    expect(page).not_to have_content 'Booked'
-    expect(page).not_to have_content 'Payed'
+    within "#event-card-#{slot1.id}" do
+      expect(page).to have_content '@Maisons-Laffite up to 2 people'
+      expect(page).to have_content '09/05/2020 for lunch'
+      expect(page).to have_content "Hosted by : #{host2.email}"
+    end
   end
 end
