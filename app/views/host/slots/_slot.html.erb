@@ -1,1 +1,9 @@
-<li><%= slot.status.capitalize %> - <%= slot.scheduled_at&.strftime("%d/%m/%Y") %> - <%=  slot.daytime&.capitalize %> - <%= slot.max_people %> ppl max</li>
+<div class='col-xl-4 col-12'>
+  <div class='card' id='slot-card-<%= slot.id %>'>
+    <div class='card-body'>
+      <h5 class='card-title'>@Maisons-Laffite up to <%= slot.max_people %> people</h5>
+      <h5 class='card-title'><%= slot.scheduled_at&.strftime("%d/%m/%Y") %> for <%= slot.daytime %></h5>
+      <h6 class='card-subtitle'>Slot status : <%= slot.status %></h6>
+    </div>
+  </div>
+</div>

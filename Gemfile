@@ -20,6 +20,9 @@ gem 'webpacker', '~> 5.2'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'jbuilder', '~> 2.10'
 
+gem 'bootstrap', '~> 5.0.0.alpha1'
+gem 'jquery-rails'
+
 group :development, :test do
   gem 'bullet'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

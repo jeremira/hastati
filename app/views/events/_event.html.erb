@@ -1,4 +1,10 @@
-<li>
-  <%= "#{event.status.capitalize} - #{event.user.email} - #{event.scheduled_at&.strftime("%d/%m/%Y")} - #{event.daytime&.capitalize} - #{event.max_people} ppl max" %>
-  <%= link_to 'Book event', new_booking_path(booking: {slot_id: event.id}) %>
-</li>
+<div class='col-xl-4 col-12'>
+  <div class='card' id='event-card-<%= event.id %>'>
+    <div class='card-body'>
+      <h5 class='card-title'>@Maisons-Laffite up to <%= event.max_people %> people</h5>
+      <h5 class='card-title'><%= event.scheduled_at&.strftime("%d/%m/%Y") %> for <%= event.daytime %></h5>
+      <h6 class='card-subtitle'>Hosted by : <%= event.user.email %></h6>
+      <%= link_to 'Book event', new_booking_path(booking: {slot_id: event.id}), class: 'card-link' %>
+    </div>
+  </div>
+</div>

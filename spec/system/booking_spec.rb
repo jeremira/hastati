@@ -17,13 +17,16 @@ RSpec.describe 'Bookings', type: :system do
     visit '/events'
     expect(page).to have_content 'Available events : 1'
     click_link 'Book event'
-    expect(page).to have_content 'Do you want to book this event ?'
-    expect(page).to have_content "Available - #{host.email} - 06/05/2020 - Lunch - 2 ppl max"
+    expect(page).to have_content 'lunch 06/05/2020'
+    expect(page).to have_content "Hosted by #{host.email}, up to 2 people."
     select 2, from: :booking_people
-    click_button 'Confirm booking'
+    expect do
+      click_button 'Confirm booking'
+    end.to change(Booking, :count).from(0).to 1
     expect(page).to have_content 'Event has been booked.'
-    expect(page).to have_content 'My bookings :'
-    expect(page).to have_content "Booked - #{host.email} - 06/05/2020 - Lunch - 2 ppl"
+    expect(page).to have_content '@Maisons-Laffite for 2 people'
+    expect(page).to have_content '06/05/2020 for lunch'
+    expect(page).to have_content 'Hosted by : Babar bouba'
     visit '/events'
     expect(page).to have_content 'Available events : 0'
   end
@@ -34,10 +37,12 @@ RSpec.describe 'Bookings', type: :system do
     visit '/events'
     expect(page).to have_content 'Available events : 0'
     visit "/bookings/new?booking[slot_id]=#{slot.id}"
-    expect(page).to have_content 'Do you want to book this event ?'
-    expect(page).to have_content "Booked - #{host.email} - 06/05/2020 - Lunch - 2 ppl max"
+    expect(page).to have_content 'lunch 06/05/2020'
+    expect(page).to have_content "Hosted by #{host.email}, up to 2 people."
     select 1, from: :booking_people
-    click_button 'Confirm booking'
+    expect do
+      click_button 'Confirm booking'
+    end.not_to change(Booking, :count)
     expect(page).to have_content 'Event could not be booked.'
     expect(page).to have_content 'Available events : 0'
   end
@@ -49,15 +54,18 @@ RSpec.describe 'Bookings', type: :system do
     sign_in host
     visit '/events'
     expect(page).to have_content 'Available events : 1'
-    expect(page).not_to have_content "Available - #{host.email} - 07/05/2020 - Lunch - 2 ppl max"
+    expect(page).not_to have_content '07/05/2020 for lunch'
     click_link 'Book event'
-    expect(page).to have_content 'Do you want to book this event ?'
-    expect(page).to have_content "Available - #{other_host.email} - 06/05/2020 - Lunch - 2 ppl max"
+    expect(page).to have_content 'lunch 06/05/2020'
+    expect(page).to have_content "Hosted by #{other_host.email}, up to 2 people."
     select 2, from: :booking_people
-    click_button 'Confirm booking'
+    expect do
+      click_button 'Confirm booking'
+    end.to change(Booking, :count).from(0).to 1
     expect(page).to have_content 'Event has been booked.'
-    expect(page).to have_content 'My bookings :'
-    expect(page).to have_content "Booked - #{other_host.email} - 06/05/2020 - Lunch - 2 ppl"
+    expect(page).to have_content '@Maisons-Laffite for 2 people'
+    expect(page).to have_content '06/05/2020 for lunch'
+    expect(page).to have_content 'Hosted by : Babar bouba'
     visit '/events'
     expect(page).to have_content 'Available events : 0'
   end
@@ -68,10 +76,12 @@ RSpec.describe 'Bookings', type: :system do
     visit '/events'
     expect(page).to have_content 'Available events : 0'
     visit "/bookings/new?booking[slot_id]=#{slot.id}"
-    expect(page).to have_content 'Do you want to book this event ?'
-    expect(page).to have_content "Available - #{host.email} - 06/05/2020 - Lunch - 2 ppl max"
+    expect(page).to have_content 'lunch 06/05/2020'
+    expect(page).to have_content "Hosted by #{host.email}, up to 2 people."
     select 1, from: :booking_people
-    click_button 'Confirm booking'
+    expect do
+      click_button 'Confirm booking'
+    end.not_to change(Booking, :count)
     expect(page).to have_content 'Event could not be booked.'
     expect(page).to have_content 'Available events : 0'
   end
@@ -83,10 +93,12 @@ RSpec.describe 'Bookings', type: :system do
     visit '/events'
     expect(page).to have_content 'Available events : 0'
     visit "/bookings/new?booking[slot_id]=#{slot.id}"
-    expect(page).to have_content 'Do you want to book this event ?'
-    expect(page).to have_content "Booked - #{other_host.email} - 06/05/2020 - Lunch - 2 ppl max"
+    expect(page).to have_content 'lunch 06/05/2020'
+    expect(page).to have_content "Hosted by #{other_host.email}, up to 2 people."
     select 1, from: :booking_people
-    click_button 'Confirm booking'
+    expect do
+      click_button 'Confirm booking'
+    end.not_to change(Booking, :count)
     expect(page).to have_content 'Event could not be booked.'
     expect(page).to have_content 'Available events : 0'
   end
