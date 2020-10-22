@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Core
-ruby '2.7.1'
+ruby '2.7.2'
 gem 'activeadmin', '~> 2.8'
 gem 'devise', '~> 4.7'
 gem 'pg', '>= 0.18', '< 2.0'
