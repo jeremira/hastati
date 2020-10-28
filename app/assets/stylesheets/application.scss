@@ -17,6 +17,15 @@ $brand-danger: $color-alert;
 $navbar-default-bg: $color-primary;
 $navbar-default-color: $color-primary;
 
+$theme-colors: (
+ "primary": $color-primary,
+ "secondary": $color-secondary,
+ "success": $color-validate,
+ "danger": $color-alert,
+ "warning": $color-warning,
+ "info": $color-edit
+);
+
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
