@@ -15,12 +15,12 @@ RSpec.describe 'Events', type: :system do
   it 'A guest see no events' do
     sign_in guest
     visit '/events'
-    expect(page).to have_content 'Available events : 0'
+    expect(page).to have_content 'Available events'
   end
   it 'A host see no events' do
     sign_in host
     visit '/events'
-    expect(page).to have_content 'Available events : 0'
+    expect(page).to have_content 'Available events'
   end
   it 'A guest see available events' do
     # Available futur events
@@ -37,7 +37,7 @@ RSpec.describe 'Events', type: :system do
     create :slot, user: host, status: 2, scheduled_at: '2020/06/05'
     sign_in guest
     visit '/events'
-    expect(page).to have_content 'Available events : 3'
+    expect(page).to have_content 'Available events'
     within "#event-card-#{slot1.id}" do
       expect(page).to have_content '@Maisons-Laffite up to 2 people'
       expect(page).to have_content '06/05/2020 for lunch'
@@ -69,7 +69,7 @@ RSpec.describe 'Events', type: :system do
     create :slot, user: host, status: 2, scheduled_at: '2020/06/05'
     sign_in host
     visit '/events'
-    expect(page).to have_content 'Available events : 1'
+    expect(page).to have_content 'Available events'
     within "#event-card-#{slot1.id}" do
       expect(page).to have_content '@Maisons-Laffite up to 2 people'
       expect(page).to have_content '09/05/2020 for lunch'
