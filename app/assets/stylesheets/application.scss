@@ -1,2 +1,35 @@
+// Color code for graphic chart
+$color-primary: #aec6ce; //roquefort blue
+$color-secondary: #8ddbc3; //light blue/green
+$color-ternary: #ffd865; // comte yellow
+$color-edit: #97d2d2; //blue
+$color-validate: #a0e1a4; //green
+$color-warning: #ffbb48; //orange
+$color-alert: #f95524; //red
+
+// Overwrite Bootstrap colors scheme
+$brand-primary: $color-primary;
+$brand-success: $color-validate;
+$brand-info: $color-edit;
+$brand-warning: $color-warning;
+$brand-danger: $color-alert;
+
+$navbar-default-bg: $color-primary;
+$navbar-default-color: $color-primary;
+
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+.main-navbar {
+  background-color: $color-primary;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.alert {
+  margin: 10px;
+  padding: 15px 40px 15px 10px;
+  float: right;
+  display: inline-block;
+}
