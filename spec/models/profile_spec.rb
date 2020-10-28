@@ -11,6 +11,32 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#fullname' do
+    let(:tested_method) { profile.fullname }
+
+    context 'without any name informations' do
+      it 'returns an empty string' do
+        expect(tested_method).to eq ''
+      end
+    end
+
+    context 'with partial name informations' do
+      let(:profile) { build :profile, lastname: 'bidule'}
+
+      it 'returns correct address' do
+        expect(tested_method).to eq 'Bidule'
+      end
+    end
+
+    context 'with full name informations' do
+      let(:profile) { build :profile, firstname: 'machin', lastname: 'bidule'}
+
+      it 'returns correct address' do
+        expect(tested_method).to eq 'Machin Bidule'
+      end
+    end
+  end
+
   describe '#address' do
     let(:tested_method) { profile.address }
 
