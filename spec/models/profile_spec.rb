@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe Profile, type: :model do
   let(:profile) { build :profile }
 
   describe 'Validation' do
@@ -21,7 +21,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'with partial name informations' do
-      let(:profile) { build :profile, lastname: 'bidule'}
+      let(:profile) { build :profile, lastname: 'bidule' }
 
       it 'returns correct address' do
         expect(tested_method).to eq 'Bidule'
@@ -29,7 +29,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'with full name informations' do
-      let(:profile) { build :profile, firstname: 'machin', lastname: 'bidule'}
+      let(:profile) { build :profile, firstname: 'machin', lastname: 'bidule' }
 
       it 'returns correct address' do
         expect(tested_method).to eq 'Machin Bidule'
@@ -47,7 +47,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'with partial address informations' do
-      let(:profile) { build :profile, city: 'paris', country: 'france'}
+      let(:profile) { build :profile, city: 'paris', country: 'france' }
 
       it 'returns correct address' do
         expect(tested_method).to eq 'paris, france'
@@ -55,7 +55,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'with full address informations' do
-      let(:profile) { build :profile, street: '9 rue des mimosas', zipcode: '09140', city: 'le vernet', country: 'france'}
+      let(:profile) { build :profile, street: '9 rue des mimosas', zipcode: '09140', city: 'le vernet', country: 'france' }
 
       it 'returns correct address' do
         expect(tested_method).to eq '9 rue des mimosas, 09140, le vernet, france'
