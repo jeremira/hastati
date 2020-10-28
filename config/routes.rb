@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # Devise Authentification routing
   devise_for :users
 
+  resource :profile, only: [:show, :edit, :update]
   resources :events, only: [:index]
   resources :bookings, only: [:index, :new, :create]
 

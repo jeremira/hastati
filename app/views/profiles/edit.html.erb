@@ -1,0 +1,55 @@
+<div class='row'>
+  <div class='col-xl-12'>
+    <h4 class='page-title-header'>Account informations</h4>
+  </div>
+</div>
+
+<%= form_with model: @profile, local: true do |form| %>
+  <div class='row'>
+    <div class='col-xl-6'>
+      <div class='form-group'>
+        <%= form.label :firstname %>
+        <%= form.text_field :firstname, value: @profile.firstname, class: 'form-control' %>
+      </div>
+    </div>
+    <div class='col-xl-6'>
+      <div class='form-group'>
+        <%= form.label :lastname %>
+        <%= form.text_field :lastname, value: @profile.lastname, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class='row'>
+    <div class='col-xl-6'>
+      <div class='form-group'>
+        <%= form.label :street %>
+        <%= form.text_field :street, value: @profile.street, class: 'form-control' %>
+      </div>
+    </div>
+    <div class='col-xl-6'>
+      <div class='form-group'>
+        <%= form.label :zipcode %>
+        <%= form.text_field :zipcode, value: @profile.zipcode, class: 'form-control' %>
+      </div>
+    </div>
+    <div class='col-xl-6'>
+      <div class='form-group'>
+        <%= form.label :city %>
+        <%= form.text_field :city, value: @profile.city, class: 'form-control' %>
+      </div>
+    </div>
+    <div class='col-xl-6'>
+      <div class='form-group'>
+        <%= form.label :country %>
+        <%= form.text_field :country, value: @profile.country, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class='row'>
+    <div class='col-xl-12'>
+        <%= form.submit 'Save informations', class: 'btn btn-success' %>
+    </div>
+  </div>
+<% end %>

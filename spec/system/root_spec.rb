@@ -9,12 +9,12 @@ RSpec.describe 'Root page', type: :system do
   it 'A logged-in guest sees the events page' do
     sign_in guest
     visit '/'
-    expect(page).to have_content 'Available events : 0'
+    expect(page).to have_content 'Available events'
   end
 
   it 'A logged-in host sees the slots page' do
     sign_in host
     visit '/'
-    expect(page).to have_content 'Available events : 0'
+    expect(page).to have_content 'Available events'
   end
 end
