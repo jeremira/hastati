@@ -63,6 +63,10 @@ jobs:
           cat config/database.ci.yml > config/database.yml
           bundle exec rails db:create
           bundle exec rails db:migrate
+      - name: Run linter
+        env:
+          RAILS_ENV: test
+        run: bundle exec rubocop
       - name: Run tests
         env:
           RAILS_ENV: test
