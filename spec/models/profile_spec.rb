@@ -55,7 +55,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'with full address informations' do
-      let(:profile) { build :profile, stree: '9 rue des mimosas', zipcode: '09140', city: 'le vernet', country: 'france'}
+      let(:profile) { build :profile, street: '9 rue des mimosas', zipcode: '09140', city: 'le vernet', country: 'france'}
 
       it 'returns correct address' do
         expect(tested_method).to eq '9 rue des mimosas, 09140, le vernet, france'
