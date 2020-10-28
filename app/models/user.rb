@@ -5,6 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
+  has_one :profile, dependent: :destroy
   has_many :slots, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :events, through: :bookings, source: :slot, inverse_of: 'guest'
