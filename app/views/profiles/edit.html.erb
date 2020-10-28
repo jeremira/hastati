@@ -1,6 +1,6 @@
-<div class='row page-title-header'>
+<div class='row'>
   <div class='col-xl-12'>
-    <h4>Account informations</h4>
+    <h4 class='page-title-header'>Account informations</h4>
   </div>
 </div>
 
@@ -9,13 +9,13 @@
     <div class='col-xl-6'>
       <div class='form-group'>
         <%= form.label :firstname %>
-        <%= form.text_field :firstname, class: 'form-control' %>
+        <%= form.text_field :firstname, value: @profile.firstname, class: 'form-control' %>
       </div>
     </div>
     <div class='col-xl-6'>
       <div class='form-group'>
         <%= form.label :lastname %>
-        <%= form.text_field :lastname, class: 'form-control' %>
+        <%= form.text_field :lastname, value: @profile.lastname, class: 'form-control' %>
       </div>
     </div>
   </div>
@@ -24,25 +24,25 @@
     <div class='col-xl-6'>
       <div class='form-group'>
         <%= form.label :street %>
-        <%= form.text_field :street, class: 'form-control' %>
+        <%= form.text_field :street, value: @profile.street, class: 'form-control' %>
       </div>
     </div>
     <div class='col-xl-6'>
       <div class='form-group'>
         <%= form.label :zipcode %>
-        <%= form.text_field :zipcode, class: 'form-control' %>
+        <%= form.text_field :zipcode, value: @profile.zipcode, class: 'form-control' %>
       </div>
     </div>
     <div class='col-xl-6'>
       <div class='form-group'>
         <%= form.label :city %>
-        <%= form.text_field :city, class: 'form-control' %>
+        <%= form.text_field :city, value: @profile.city, class: 'form-control' %>
       </div>
     </div>
     <div class='col-xl-6'>
       <div class='form-group'>
         <%= form.label :country %>
-        <%= form.text_field :country, class: 'form-control' %>
+        <%= form.text_field :country, value: @profile.country, class: 'form-control' %>
       </div>
     </div>
   </div>

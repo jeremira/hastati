@@ -31,14 +31,21 @@ $theme-colors: (
 
 .main-navbar {
   background-color: $color-primary;
-  margin-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 10px 20px;
 }
 
 .alert {
-  margin: 10px;
+  margin: 15px;
   padding: 15px 40px 15px 10px;
-  float: right;
   display: inline-block;
+}
+
+.main-page-container {
+  margin: 15px;
+}
+
+.page-title-header {
+  padding: 10px 0;
+  margin-bottom: 30px;
+  border-bottom: 2px solid $color-ternary;
 }
