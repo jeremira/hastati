@@ -1,5 +1,6 @@
 <div class='col-xl-4 col-12'>
   <div class='card'>
+    <%= image_tag 'sample.jpg', class: 'card-img-top' %>
     <div class='card-body'>
       <h5 class='card-title'>@Maisons-Laffite for <%= booking.people %> people</h5>
       <h5 class='card-title'><%= booking.slot.scheduled_at&.strftime("%d/%m/%Y") %> for <%= booking.slot.daytime %></h5>
